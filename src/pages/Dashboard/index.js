@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Col, Row, Card, CardBody, CardTitle, CardImg, CardText, Container, Button, CardColumns } from "reactstrap";
 
-import telegram from "../../assets/images/telegram.jpeg";
+import telegram from "../../assets/images/lock.png";
 import youtube from "../../assets/images/youtube.png";
 import instagram from "../../assets/images/instagram.png";
-import meusqgrs from "../../assets/images/qgr/meusqgrs.png";
+import meusqgrs from "../../assets/images/diamond.png";
 import lives from "../../assets/images/qgr/lives.jpg";
-import batismo from "../../assets/images/qgr/batismo.jpg";
+import batismo from "../../assets/images/time.png";
 
 import { Link } from "react-router-dom";
 
@@ -39,16 +39,21 @@ class Dashboard extends Component {
                     <Breadcrumbs title="" breadcrumbItems={this.state.breadcrumbItems} />
                     <Row>
                         <Col lg={6}>
-                            <h4 className="my-3">LOCALIZAR OU CADASTRAR MEU QGR</h4>
-                            <Card>
+                            <h4 className="my-3">DESAFIOS</h4>
+                            <Card expand
+                                style={{
+                                    
+                                    background:"green",
+                                }}
+                            >
                                 <Row className="no-gutters align-items-center">
                                     <Col md={4}>
                                         <CardImg className="img-fluid" src={meusqgrs} alt="Meus QGR's" />
                                     </Col>
                                     <Col md={8}>
                                         <CardBody>
-                                            <CardTitle>Localize ou cadastre seu QGR</CardTitle>
-                                            <CardText>Vamos alcançar 250 mil quarteis generais!</CardText>
+                                            <CardTitle><h1>FINALIZADO</h1></CardTitle>
+                                           {/* <CardText>Vamos alcançar 250 mil quarteis generais!</CardText>
                                             <div className="d-grid mb-2">
                                                 <Button
                                                     color="primary"
@@ -57,7 +62,7 @@ class Dashboard extends Component {
                                                 >
                                                     LOCALIZAR OU CADASTRAR
                                                 </Button>
-                                            </div>
+                                            </div> */}
                                         </CardBody>
                                     </Col>
                                 </Row>
@@ -66,17 +71,23 @@ class Dashboard extends Component {
                     </ Row>
                     <Row>
                         <Col lg={6}>
-                            <h4 className="my-3">INFORMAÇÕES SOBRE O BATISMO</h4>
-                            <Card>
+                            {/* <h4 className="my-3">INFORMAÇÕES SOBRE O BATISMO</h4> */}
+                            <Card 
+                              expand
+                                style={{
+                                    
+                                  background:"purple",
+                                }}
+                            >
                                 <Row className="no-gutters align-items-center">
                                     <Col md={4}>
                                         <CardImg className="img-fluid" src={batismo} alt="Batismos" />
                                     </Col>
                                     <Col md={8}>
                                         <CardBody>
-                                            <CardTitle>Mais informações</CardTitle>
-                                            <CardText>Dicas, dúvidas, lives, formulários, documentos e mais...</CardText>
-                                            <div className="d-grid mb-2">
+                                            <CardTitle><h1>PENDENTE</h1></CardTitle>
+                                            {/* <CardText>Dicas, dúvidas, lives, formulários, documentos e mais...</CardText> */}
+                                            {/* <div className="d-grid mb-2">
                                                 <Button
                                                     color="primary"
                                                     className="btn btn-success btn-lg btn-block"
@@ -84,7 +95,7 @@ class Dashboard extends Component {
                                                 >
                                                     VER MAIS
                                                 </Button>
-                                            </div>
+                                            </div> */}
                                         </CardBody>
                                     </Col>
                                 </Row>
@@ -94,17 +105,23 @@ class Dashboard extends Component {
                     
                     <Row>
                         <Col lg={6}>
-                            <h4 className="my-3">CANAL NO TELEGRAM</h4>
-                            <Card>
+                            {/* <h4 className="my-3">CANAL NO TELEGRAM</h4> */}
+                            <Card
+                             expand
+                             style={{
+                                 
+                               background:"gray",
+                             }}
+                         >
                                 <Row className="no-gutters align-items-center">
                                     <Col md={4}>
                                         <CardImg className="img-fluid" src={telegram} alt="Skote" />
                                     </Col>
                                     <Col md={8}>
                                         <CardBody>
-                                            <CardTitle>Entre no grupo do Telegram</CardTitle>
-                                            <CardText>Vamos comunicar as novidades, não fique de fora!</CardText>
-                                            <div className="d-grid mb-2">
+                                            <CardTitle><h1>TRANCADO</h1></CardTitle>
+                                            {/* <CardText>Vamos comunicar as novidades, não fique de fora!</CardText> */}
+                                            {/* <div className="d-grid mb-2">
                                                 <Button
                                                     color="primary"
                                                     className="btn btn-success btn-lg btn-block"
@@ -112,12 +129,12 @@ class Dashboard extends Component {
                                                 >
                                                     ENTRAR NO GRUPO
                                                 </Button>
-                                            </div>
+                                            </div> */}
                                         </CardBody>
                                     </Col>
                                 </Row>
                             </Card>
-                            <Card>
+                            {/* <Card>
                                 <Row className="no-gutters align-items-center">
                                     <Col md={4}>
                                         <CardImg className="img-fluid" src={youtube} alt="Skote" />
@@ -138,8 +155,8 @@ class Dashboard extends Component {
                                         </CardBody>
                                     </Col>
                                 </Row>
-                            </Card>
-                            <Card>
+                            </Card> */}
+                            {/* <Card>
                                 <Row className="no-gutters align-items-center">
                                     <Col md={4}>
                                         <CardImg className="img-fluid" src={instagram} alt="Skote" />
@@ -160,10 +177,10 @@ class Dashboard extends Component {
                                         </CardBody>
                                     </Col>
                                 </Row>
-                            </Card>
+                            </Card> */}
                         </Col>
                     </ Row>
-                    <Row>
+                    {/* <Row>
                         <h4 className="my-3">LIVES</h4>
                         <CardColumns>
                             <Card>
@@ -177,7 +194,7 @@ class Dashboard extends Component {
                                 </CardBody>
                             </Card>
                         </CardColumns>
-                    </ Row>
+                    </ Row> */}
                     {/* <h4 className="my-3">CONHEÇA AS PATENTES DO REINO</h4> */}
                     {/* <Row>
                         <Col lg={6}>
@@ -235,3 +252,5 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
+
+
