@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row, Card, CardBody, CardTitle, CardImg, CardText, Container, Button, CardColumns } from "reactstrap";
+import { Col, Modal,  ModalHeader, Row, Card, CardBody, CardTitle, CardImg, CardText, Container, Button, CardColumns } from "reactstrap";
 
 import telegram from "../../assets/images/lock.png";
 import youtube from "../../assets/images/youtube.png";
@@ -26,11 +26,15 @@ class Dashboard extends Component {
                 { icon : "ri-stack-line", title : "Number of Sales", value : "1452", rate : "2.4%", desc : "From previous period" },
                 { icon : "ri-store-2-line", title : "Sales Revenue", value : "$ 38452", rate : "2.4%", desc : "From previous period" },
                 { icon : "ri-briefcase-4-line", title : "Average Price", value : "$ 15.4", rate : "2.4%", desc : "From previous period" },
-            ]
+            ],
+
+            modal_standard: false,
         }
     }
 
     render() {
+        const { modal_standard } = this.state;
+
         return (
             <React.Fragment>
                 <div className="page-content">
@@ -42,30 +46,40 @@ class Dashboard extends Component {
                             <h4 className="my-3">DESAFIOS</h4>
                             <Card expand
                                 style={{
-                                    
-                                    background:"green",
+                                  background:"green",
                                 }}
                             >
-                                <Row className="no-gutters align-items-center">
-                                    <Col md={4}>
-                                        <CardImg className="img-fluid" src={meusqgrs} alt="Meus QGR's" />
-                                    </Col>
-                                    <Col md={8}>
-                                        <CardBody>
-                                            <CardTitle><h1>FINALIZADO</h1></CardTitle>
-                                           {/* <CardText>Vamos alcançar 250 mil quarteis generais!</CardText>
-                                            <div className="d-grid mb-2">
-                                                <Button
-                                                    color="primary"
-                                                    className="btn btn-success btn-lg btn-block"
-                                                    onClick={()=> window.open("/qgr", "_self")}
-                                                >
-                                                    LOCALIZAR OU CADASTRAR
-                                                </Button>
-                                            </div> */}
-                                        </CardBody>
-                                    </Col>
-                                </Row>
+                                <Button
+                                    color="#3d8116"
+                                    onClick={() => this.setState({ modal_standard: true })}
+                                >
+                                    <Row>
+                                        <Col md={4} className="d-flex align-items-center justify-content-center">
+                                            <CardImg
+                                                src={meusqgrs} 
+                                                alt="Meus QGR's" 
+                                                style={{ width: 59 }}
+                                            />
+                                        </Col>
+                                        <Col md={8}>
+                                            <CardBody>
+                                                <CardTitle>
+                                                    <h1>FINALIZADO</h1>
+                                                </CardTitle>
+                                            {/* <CardText>Vamos alcançar 250 mil quarteis generais!</CardText>
+                                                <div className="d-grid mb-2">
+                                                    <Button
+                                                        color="primary"
+                                                        className="btn btn-success btn-lg btn-block"
+                                                        onClick={()=> window.open("/qgr", "_self")}
+                                                    >
+                                                        LOCALIZAR OU CADASTRAR
+                                                    </Button>
+                                                </div> */}
+                                            </CardBody>
+                                        </Col>
+                                    </Row>
+                                </Button>
                             </Card>
                         </Col>
                     </ Row>
@@ -75,13 +89,18 @@ class Dashboard extends Component {
                             <Card 
                               expand
                                 style={{
-                                    
-                                  background:"purple",
+                                 background:"purple",
                                 }}
                             >
+                       
                                 <Row className="no-gutters align-items-center">
-                                    <Col md={4}>
-                                        <CardImg className="img-fluid" src={batismo} alt="Batismos" />
+                                    <Col md={4} className="d-flex align-items-center justify-content-center">
+                                        <CardImg 
+                                            className="img-fluid"
+                                            src={batismo} 
+                                            alt="Batismos" 
+                                            style={{ width: 59 }} 
+                                        />
                                     </Col>
                                     <Col md={8}>
                                         <CardBody>
@@ -109,13 +128,17 @@ class Dashboard extends Component {
                             <Card
                              expand
                              style={{
-                                 
-                               background:"gray",
+                              background:"gray",
                              }}
                          >
                                 <Row className="no-gutters align-items-center">
-                                    <Col md={4}>
-                                        <CardImg className="img-fluid" src={telegram} alt="Skote" />
+                                    <Col md={4} className="d-flex align-items-center justify-content-center">
+                                        <CardImg 
+                                        className="img-fluid" 
+                                        src={telegram} 
+                                        alt="Skote" 
+                                        style={{ width: 59 }} 
+                                    />
                                     </Col>
                                     <Col md={8}>
                                         <CardBody>
@@ -246,6 +269,16 @@ class Dashboard extends Component {
                     </Row> */}
                     </Container> 
                 </div>
+                <Modal isOpen={modal_standard}  >
+                    <ModalHeader toggle={() => this.setState({ modal_standard: false })}>
+                      Cadastrar
+                   </ModalHeader>
+                   
+                   <ModalHeader>
+
+                   </ModalHeader>
+                </Modal>
+                   
             </React.Fragment>
         );
     }
