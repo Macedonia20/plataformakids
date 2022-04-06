@@ -3,6 +3,11 @@ import { Modal,  ModalHeader, Row, Input, Label, Container, Button, CardBody } f
 import { map } from "lodash";
 import { toast } from 'react-toastify';
 
+import ModalTrancado from "./Modal/ModalTrancado"
+import ModalResposta from "./Modal/ModalResposta"
+import ModalFinalizado from "./Modal/ModalFinalizado"
+
+
 import api from '../../services/api';
 
 import Cards from './Cards';
@@ -20,6 +25,11 @@ class Dashboard extends Component {
             isLoading: false
         }
     }
+
+    setModalStandard(bollean) {
+       this.setState({ modal_standard: bollean })
+    }
+
 
     async carregarDesafios () {
         try {
@@ -67,7 +77,7 @@ class Dashboard extends Component {
                         ))}
                     </Container> 
                 </div>
-                <Modal isOpen={modal_standard}  >
+                {/* <Modal isOpen={modal_standard}  >
                     <ModalHeader toggle={() => this.setState({ modal_standard: false })}>
                         <Row className="mb-3">
                             <Label className="">Digite o código secreto do desafio</Label>
@@ -85,7 +95,13 @@ class Dashboard extends Component {
                             </CardBody>
                         </Row>
                     </ModalHeader>
-                </Modal>
+                </Modal> */}
+               <ModalFinalizado 
+                modal_standard={modal_standard} 
+                setModalStandard={() =>this.setModalStandard(false)}>
+               </ModalFinalizado>
+
+             
             </React.Fragment>
         );
     }
