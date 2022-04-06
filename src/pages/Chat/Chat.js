@@ -8,34 +8,21 @@ import { size } from "lodash";
 import Avatar from 'react-avatar';
 import api from '../../services/api';
 import chatImg from "../../assets/images/chat.png";
-import { toast } from 'react-toastify';
 import {
   Button,
   Col,
-  CardBody,
   Container,
   Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Form,
   Input,
   Nav,
-  NavItem,
-  NavLink,
   Row,
   TabContent,
   TabPane
 } from "reactstrap";
 
-import classnames from "classnames";
-
 //Import Scrollbar
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
-
-//Import Images
-import user1 from "../../assets/images/users/avatar-1.jpg";
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
@@ -229,7 +216,7 @@ class Chat extends Component {
 
   //Use For Chat Box
   userChatOpen = (id, name, status, roomId) => {
-    const { onGetMessages } = this.props;
+    // const { onGetMessages } = this.props;
     this.setState({
       Chat_Box_Username: name,
       currentRoomId: roomId,
@@ -282,7 +269,7 @@ class Chat extends Component {
   };
 
   render() {
-    let { chats, groups, contacts, messages } = this.props;
+    let { groups, contacts } = this.props;
 
     const { currentRoomId, currentUser } = this.state;
   

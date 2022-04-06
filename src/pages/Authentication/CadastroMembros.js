@@ -58,27 +58,27 @@ class CadastroMembros extends Component {
     }
 
     setIdqgr = (event) => {
-        this.state.idqgr = event.target.value;
+        this.setState({idqgr: event.target.value});
     }
 
     setNome = (event) => {
-        this.state.nome = event.target.value;
+        this.setState({nome: event.target.value});
     }
 
     setEmail = (event) => {
-        this.state.email = event.target.value;
+        this.setState({email: event.target.value});
     }
 
     setWhatsapp = (event) => {
-        this.state.whatsapp = event.target.value;
+        this.setState({whatsapp: event.target.value});
     }
 
     setSenha = (event) => {
-        this.state.password = event.target.value;
+        this.setState({password: event.target.value});
     }
 
     setConfirmeSenha = (event) => {
-        this.state.confirmeSenha = event.target.value;
+        this.setState({confirmeSenha: event.target.value});
     }
 
     validarCampos = () => {

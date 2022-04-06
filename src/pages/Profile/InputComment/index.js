@@ -8,8 +8,6 @@ import {
 } from './styles';
 
 export function InputComment() {
-
-  const [like, setLike] = useState(false);
   const [isFocusInputComment, setIsFocusInputComment] = useState(false)
 
   function handleIsFocusInputComment() {

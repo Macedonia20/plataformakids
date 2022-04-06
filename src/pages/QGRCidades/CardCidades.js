@@ -12,7 +12,7 @@ const CardCidades = props => {
     const url = new URL(window.location.href);
     const estadoParam = url.searchParams.get("s");
     setEstado(estadoParam);
-  });
+  }, []);
 
   return (
     <React.Fragment>

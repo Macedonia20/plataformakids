@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Container, CardBody, Row, Col, Card, ModalFooter, Button } from "reactstrap";
+import { Container, CardBody, Row, Col, Card } from "reactstrap";
 import { Link } from "react-router-dom";
-import moment from "moment";
 import 'moment/locale/pt-br';
 import { toast } from 'react-toastify';
 import Fab from '@mui/material/Fab';

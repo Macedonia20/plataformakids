@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 //Icon Like
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+// import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import ShareIcon from '@mui/icons-material/Share';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -38,16 +38,8 @@ export function PostProfile({
   // shareds
 }) {
 
-  const [like, setLike] = useState(false);
-  const [isFocusInputComment, setIsFocusInputComment] = useState(false)
+  // const [like, setLike] = useState(false);
 
-  function handleIsFocusInputComment() {
-    setIsFocusInputComment(true)
-  }
-
-  function handleIsNoFocusInputComment() {
-    setIsFocusInputComment(false)
-  }
   return (
     <Container>
       {/* User Data */}
@@ -80,7 +72,7 @@ export function PostProfile({
       <WrapperButtonInter>
         <ButtonInterLeft>
           <ContainerButtonIcon>
-            {like ? (
+            {/* {like ? (
               <FavoriteIcon
                 style={{
                   color: '#25d366'
@@ -89,7 +81,7 @@ export function PostProfile({
 
             ) : (
               <FavoriteBorderIcon />
-            )}
+            )} */}
           </ContainerButtonIcon>
           <ContainerButtonIcon>
             <CommentIcon />

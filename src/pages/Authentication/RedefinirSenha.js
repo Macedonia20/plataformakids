@@ -49,11 +49,11 @@ class Register extends Component {
     }
 
     setSenha = (event) => {
-        this.state.password = event.target.value;
+        this.setState({password: event.target.value});
     }
 
     setConfirmeSenha = (event) => {
-        this.state.confirmeSenha = event.target.value;
+        this.setState({confirmeSenha: event.target.value});
     }
 
     validarCampos = () => {

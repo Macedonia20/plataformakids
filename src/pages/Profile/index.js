@@ -57,6 +57,7 @@ const POSTS = [
 function Profile() {
 
   const [userData, setUserData] = useState(user);
+  setUserData(user);
   const [contentPost, setContentPost] = useState('');
 
   const [postUser, setPostUser] = useState(POSTS);

@@ -36,59 +36,51 @@ class QGRFuzileiro extends Component {
 
     informarEstado = (event) => {
         const estadoSelecionado = event.target.value;
-        this.state.estado = estadoSelecionado;
-        this.setState({
-            estado: estadoSelecionado
-        });
+        this.setState({estado: estadoSelecionado});
         this.exibirCidades(estadoSelecionado);
     }
     
     exibirCidades = (estadoSelecionado) => {
         const { estados } = EstadosCidades;
+        // eslint-disable-next-line
         estados.map((estado) => {
           if (estado.sigla === estadoSelecionado) {
-            this.setState({
-                cidades: estado.cidades
-            });
+            this.setState({ cidades: estado.cidades });
           }
         });
     }
 
     setPais = (text) => {
-        console.log('setPais; ', text);
         const paisSelecionado = text;
-        this.state.pais = paisSelecionado;
-        this.setState({
-            pais: paisSelecionado
-        });
+        this.setState({ pais: paisSelecionado });
     }
 
     setCidadeSelecionada = (event) => {
-        this.state.cidadeSelecionada = event.target.value;
+        this.setState({cidadeSelecionada: event.target.value});
     }
 
     setFuncao = (event) => {
-        this.state.funcao = event.target.value;
+        this.setState({funcao: event.target.value});
     }
 
     setInstagram = (event) => {
-        this.state.instagram = event.target.value;
+        this.setState({instagram: event.target.value});
     }
 
     setWhatsapp = (event) => {
-        this.state.whatsapp = event.target.value;
+        this.setState({whatsapp: event.target.value});
     }
 
     setGrupowhatsapp = (event) => {
-        this.state.grupowhatsapp = event.target.value;
+        this.setState({grupowhatsapp: event.target.value});
     }
 
     setBairro = (event) => {
-        this.state.bairro = event.target.value;
+        this.setState({bairro: event.target.value});
     }
 
     setDescricao = (event) => {
-        this.state.descricao = event.target.value;
+        this.setState({descricao: event.target.value});
     }
 
     setNome = (event) => {

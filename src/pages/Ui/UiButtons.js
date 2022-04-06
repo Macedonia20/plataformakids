@@ -393,24 +393,24 @@ class UiButtons extends Component {
                     <p className="card-title-desc">Create block level buttons—those that span the full width of a parent—by adding property <code
                       className="highlighter-rouge">block</code>.</p>
 
-                <div>
-                  <div className="d-grid mb-3">
-                    <Button
-                      color="primary"
-                      className="btn btn-primary btn-lg btn-block "
-                    >
-                      Block level button
-                    </Button>
+                    <div>
+                      <div className="d-grid mb-3">
+                        <Button
+                          color="primary"
+                          className="btn btn-primary btn-lg btn-block "
+                        >
+                          Block level button
+                        </Button>
+                        </div>
+                        <div className="d-grid">
+                        <Button
+                          color="light"
+                          className="btn btn-light btn-sm btn-block "
+                        >
+                          Block level button
+                        </Button>
+                      </div>
                     </div>
-                    <div className="d-grid">
-                    <Button
-                      color="light"
-                      className="btn btn-light btn-sm btn-block "
-                    >
-                      Block level button
-                    </Button>
-                  </div>
-                  </div>
                   </CardBody>
                 </Card>
 

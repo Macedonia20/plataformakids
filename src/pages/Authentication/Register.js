@@ -43,15 +43,13 @@ class Register extends Component {
 
     informarEstado = (event) => {
         const estadoSelecionado = event.target.value;
-        this.state.estado = estadoSelecionado;
-        this.setState({
-            estado: estadoSelecionado
-        });
+        this.setState({ estado: estadoSelecionado });
         this.exibirCidades(estadoSelecionado);
     }
 
     exibirCidades = (estadoSelecionado) => {
         const { estados } = EstadosCidades;
+        // eslint-disable-next-line
         estados.map((estado) => {
           if (estado.sigla === estadoSelecionado) {
             this.setState({
@@ -161,33 +159,27 @@ class Register extends Component {
         } catch (error) {
             toast.error("Email já cadastrado efetue seu login.");
         }
-
-        const paisSelecionado = document.getElementById('select-pais').value;
     }
 
     setNome = (event) => {
-        this.state.nome = event.target.value;
+        this.setState({nome: event.target.value});
     }
 
     setEmail = (event) => {
-        this.state.email = event.target.value;
+        this.setState({email: event.target.value});
     }
 
     setSenha = (event) => {
-        this.state.password = event.target.value;
+        this.setState({password: event.target.value});
     }
 
     setConfirmeSenha = (event) => {
-        this.state.confirmeSenha = event.target.value;
+        this.setState({confirmeSenha: event.target.value});
     }
 
     setPais = (text) => {
-        console.log('setPais; ', text);
         const paisSelecionado = text;
-        this.state.pais = paisSelecionado;
-        this.setState({
-            pais: paisSelecionado
-        });
+        this.setState({ pais: paisSelecionado });
     }
 
     validarCampos = () => {

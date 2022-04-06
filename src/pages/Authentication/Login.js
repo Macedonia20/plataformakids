@@ -61,11 +61,11 @@ class Login extends Component {
     }
 
     setEmail = (event) => {
-        this.state.username = event.target.value;
+        this.setState({username: event.target.value});
     }
 
     setSenha = (event) => {
-        this.state.password = event.target.value;
+        this.setState({password: event.target.value});
     }
 
     componentWillUnmount() {
