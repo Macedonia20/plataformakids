@@ -22,7 +22,8 @@ class Dashboard extends Component {
             breadcrumbItems : [],
             desafios: [],
             modal_standard: false,
-            isLoading: false
+            isLoading: false,
+            desafioAberto: {}
         }
     }
 
@@ -58,6 +59,41 @@ class Dashboard extends Component {
         }
       }
 
+      setModalOpen(desafio) {
+         this.setState({ 
+             modal_standard: true,
+            desafioAberto: desafio
+            })
+         
+      }
+
+
+      renderModal(statusDesafio, desafioAberto) {
+          switch ( statusDesafio ){
+              case 'trancado': 
+                return (
+                    <ModalFinalizado
+                        modal_standard={this.state.modal_standard} 
+                        setModalStandard={() =>this.setModalStandard(false)}
+                    />)
+              case 'pendente': 
+                return ( 
+                <ModalResposta 
+                    modal_standard={this.state.modal_standard} 
+                    setModalStandard={() =>this.setModalStandard(false)}
+                />)
+
+              default: ( 
+                <ModalTrancado 
+                    modal_standard={this.state.modal_standard} 
+                    setModalStandard={() =>this.setModalStandard(false)}
+                    desafio={desafioAberto} 
+                />) 
+                return 
+                
+          }
+      }
+
     componentDidMount() {
         this.carregarDesafios();
     }
@@ -71,37 +107,22 @@ class Dashboard extends Component {
                     <Container fluid>
                         <Breadcrumbs title="DESAFIOS" breadcrumbItems={this.state.breadcrumbItems} />
                         {map(this.state.desafios, (desafio, key) => (
-                            <span  key={key} onClick={() => this.setState({ modal_standard: true })}>
+                            <span  key={key} onClick={() => this.setModalOpen(desafio )}>
                                 <Cards desafio={desafio} />
                             </span>
                         ))}
                     </Container> 
                 </div>
-                {/* <Modal isOpen={modal_standard}  >
-                    <ModalHeader toggle={() => this.setState({ modal_standard: false })}>
-                        <Row className="mb-3">
-                            <Label className="">Digite o código secreto do desafio</Label>
-                            <CardBody>
-                                <Input placeholder="Digite aqui..." />
-                                <br/>
-                                <div className="d-grid mb-3">
-                                    <Button
-                                        color="primary"
-                                        className="btn btn-primary btn-lg btn-block "
-                                    >
-                                        Aguarde o comando...
-                                    </Button>
-                                </div>
-                            </CardBody>
-                        </Row>
-                    </ModalHeader>
-                </Modal> */}
-               <ModalFinalizado 
+              
+               {/* <ModalFinalizado 
                 modal_standard={modal_standard} 
                 setModalStandard={() =>this.setModalStandard(false)}>
-               </ModalFinalizado>
+               </ModalFinalizado> */}
 
-             
+             {this.renderModal(
+                 this.state.desafioAberto.status, 
+                 this.state.desafioAberto, 
+                 )}
             </React.Fragment>
         );
     }

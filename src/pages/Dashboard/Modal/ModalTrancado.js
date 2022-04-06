@@ -1,19 +1,42 @@
-import  React from "react";
-import { Modal, ModalHeader, Row, Label, CardBody, Input, Button  } from "reactstrap"
+import  React, {useState} from "react";
+import { Modal,  ModalHeader, Row, Label, CardBody, Input, Button  } from "reactstrap"
 
 const ModalTrancado = ({
-    modal_standard,
-     setModalStandard
-    }) => {
+     modal_standard,
+     setModalStandard,
+     desafio
+        }) => {
+
+        const [codigo, setCodigo ]  = useState("")
+
+        function handleTextArea(text) {
+            if (text.length >0) {
+                setCodigo(text)
+            }
+        }
+
+
+        function handleConferirCodigo() {
+           const newCode = codigo.toUpperCase() 
+           if (desafio.codigosecreto === newCode) {
+               // primeiro abrir toast de confirmação toast
+               // modificar o status do desafio para pendente
+               //
+           }
+        }
     return (
         <Modal isOpen={modal_standard}  >
         <ModalHeader toggle={() => setModalStandard()} >
             <Row className="mb-3">
-                <Label className=""><h1>Desbloquear Desafio 1</h1></Label>
+                <Label className=""><h1>Desbloquear `${desafio.nome}`</h1></Label>
                 <CardBody>
                 <Label className=""><p>Digite o código secreto</p></Label>
 
-                    <Input placeholder="Digite aqui..." />
+                    <Input
+                        placeholder="Digite aqui..."
+                        value={codigo}
+                        onChange={(value)=> handleTextArea(value)}
+                     />
                     <br/>
                     <div className="d-grid mb-3">
                         <Button
