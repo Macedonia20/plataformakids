@@ -6,7 +6,7 @@ const ModalTrancado = ({
      setModalStandard,
      desafio
         }) => {
-
+     console.log("O QUE VEM", desafio)
         const [codigo, setCodigo ]  = useState("")
 
         function handleTextArea(text) {
@@ -28,15 +28,15 @@ const ModalTrancado = ({
         <Modal isOpen={modal_standard}  >
         <ModalHeader toggle={() => setModalStandard()} >
             <Row className="mb-3">
-                <Label className=""><h1>Desbloquear `${desafio.nome}` </h1></Label>
+                <Label className=""><h1>Desbloquear</h1></Label>
                 <CardBody>
                 <Label className=""><p>Digite o código secreto</p></Label>
-
-                    <Input
-                        placeholder="Digite aqui..."
-                        value={codigo}
+                
+                    <Input type="text"
+                        placeholder="Digite aqui..."    
+                        defaultValue={codigo}
                         onChange={(value)=> handleTextArea(value)}
-                     />
+                    />
                     <br/>
                     <div className="d-grid mb-3">
                         <Button

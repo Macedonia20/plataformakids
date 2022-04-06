@@ -81,6 +81,7 @@ const Dashboard = () => {
                     <ModalTrancado 
                         modal_standard={modal_standard} 
                         setModalStandard={() =>setModalStandard(false)} 
+                        desafio={desafioAberto}
                     />)
           }
       }
