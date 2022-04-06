@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal,  ModalHeader, Row, Input, Label, Container, Button, CardBody } from "reactstrap";
 import { map } from "lodash";
 import { toast } from 'react-toastify';
@@ -15,24 +15,21 @@ import Cards from './Cards';
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 
-class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            breadcrumbItems : [],
-            desafios: [],
-            modal_standard: false,
-            isLoading: false,
-            desafioAberto: {}
-        }
-    }
+const Dashboard = () => {
 
-    setModalStandard(bollean) {
-       this.setState({ modal_standard: bollean })
+
+    const [breadcrumbItems, setBreadcrumbItems] = useState([])
+    const [ desafios, setDesafios] = useState([])
+    const [modal_standard, setModal_Standart] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [desafioAberto, setDesafioAberto] = useState(null)
+
+    function setModalStandard(bollean) {
+        setModal_Standart(bollean)
     }
 
 
-    async carregarDesafios () {
+    async function carregarDesafios () {
         try {
             let obj = '';
             if (localStorage.getItem("authUser")) {
@@ -45,13 +42,9 @@ class Dashboard extends Component {
 
             await api.get(`/desafios`, options)
             .then(({ data })=> {
-                this.setState({
-                    isLoading: false
-                });
-    
-                this.setState({
-                    desafios: data
-                });
+                setIsLoading(false)
+                
+                setDesafios(data)
             });
             
         } catch (error) {
@@ -59,74 +52,77 @@ class Dashboard extends Component {
         }
       }
 
-      setModalOpen(desafio) {
-         this.setState({ 
-             modal_standard: true,
-            desafioAberto: desafio
-            })
-         
+      function setModalOpen(numeroDesafio, codigoDesafio, desafio) {
+
+          console.log('DESAFIO', desafio)
+         setModal_Standart(true)
+         setDesafioAberto(desafio)
       }
 
 
-      renderModal(statusDesafio, desafioAberto) {
+      function optionModal(statusDesafio) {
           switch ( statusDesafio ){
               case 'trancado': 
                 return (
-                    <ModalFinalizado
-                        modal_standard={this.state.modal_standard} 
-                        setModalStandard={() =>this.setModalStandard(false)}
-                    />)
+                <ModalFinalizado
+                    modal_standard={modal_standard} 
+                    setModalStandard={() =>setModalStandard(false)}
+                />)
               case 'pendente': 
                 return ( 
                 <ModalResposta 
-                    modal_standard={this.state.modal_standard} 
-                    setModalStandard={() =>this.setModalStandard(false)}
+                    modal_standard={modal_standard} 
+                    setModalStandard={() =>setModalStandard(false)}
+                    desafio={desafioAberto}
                 />)
 
-              default: ( 
-                <ModalTrancado 
-                    modal_standard={this.state.modal_standard} 
-                    setModalStandard={() =>this.setModalStandard(false)}
-                    desafio={desafioAberto} 
-                />) 
-                return 
-                
+              default: 
+                return ( 
+                    <ModalTrancado 
+                        modal_standard={modal_standard} 
+                        setModalStandard={() =>setModalStandard(false)} 
+                    />)
           }
       }
 
-    componentDidMount() {
-        this.carregarDesafios();
-    }
+    //   renderModal(statusDesafio) {
+    //       if(statusDesafio) {
+    //           return this.optionModal(statusDesafio)
+    //       } else {
+    //           return null
+    //       }
+    //   }
+   useEffect(()=>{
+       async function loadData() {
 
-    render() {
-        const { modal_standard } = this.state;
+           await carregarDesafios()
+       }
+
+       loadData()
+
+   }, [])
 
         return (
             <React.Fragment>
                 <div className="page-content">
                     <Container fluid>
-                        <Breadcrumbs title="DESAFIOS" breadcrumbItems={this.state.breadcrumbItems} />
-                        {map(this.state.desafios, (desafio, key) => (
-                            <span  key={key} onClick={() => this.setModalOpen(desafio )}>
+                        <Breadcrumbs title="DESAFIOS" breadcrumbItems={breadcrumbItems} />
+                        {map(desafios, (desafio, key) => (
+                            <span  key={key} onClick={() => setModalOpen(desafio.iddesafios, desafio.codigo_secreto, desafio)}>
                                 <Cards desafio={desafio} />
                             </span>
                         ))}
                     </Container> 
                 </div>
-              
-               {/* <ModalFinalizado 
-                modal_standard={modal_standard} 
-                setModalStandard={() =>this.setModalStandard(false)}>
-               </ModalFinalizado> */}
-
-             {this.renderModal(
-                 this.state.desafioAberto.status, 
-                 this.state.desafioAberto, 
-                 )}
+              {
+                  desafioAberto !== null && (
+                    optionModal(desafioAberto.status)
+                  )
+              }
+             
             </React.Fragment>
         );
     }
-}
 
 export default Dashboard;
 
