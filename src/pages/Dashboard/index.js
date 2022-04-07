@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "reactstrap";
 import { map } from "lodash";
-import { toast } from 'react-toastify';
+//Import Tost
+import { toast, ToastContainer } from 'react-toastify';
 
 import ModalTrancado from "./Modal/ModalTrancado"
 import ModalResposta from "./Modal/ModalResposta"
@@ -101,15 +102,6 @@ const Dashboard = () => {
         loadData()
 
     }, [])
-
-    useEffect(() => {
-        async function loadData() {
-
-            await carregarDesafios()
-        }
-
-        loadData()
-    }, [modifierModal])
 
     return (
         <React.Fragment>

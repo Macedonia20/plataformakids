@@ -15,6 +15,9 @@ import NonAuthLayout from "./components/NonAuthLayout";
 import { ThemeProvider } from 'styled-components'
 import theme from '../src/styles/theme'
 
+// Import Toast
+import { ToastContainer } from 'react-toastify';
+
 // Import scss
 import "./assets/scss/theme.scss";
 import 'react-toastify/dist/ReactToastify.css';
@@ -71,21 +74,23 @@ class App extends Component {
 
 		return (
 			<React.Fragment>
+				<ToastContainer />
+
 				<Router>
-				<ThemeProvider
-							theme={theme}
-						>
-					<Switch>
-						{publicRoutes.map((route, idx) => (
-							<AppRoute
-								path={route.path}
-								layout={NonAuthLayout}
-								component={route.component}
-								key={idx}
-								isAuthProtected={false}
-							/>
-						))}
-						
+					<ThemeProvider
+						theme={theme}
+					>
+						<Switch>
+							{publicRoutes.map((route, idx) => (
+								<AppRoute
+									path={route.path}
+									layout={NonAuthLayout}
+									component={route.component}
+									key={idx}
+									isAuthProtected={false}
+								/>
+							))}
+
 
 
 							{authProtectedRoutes.map((route, idx) => (
@@ -97,8 +102,8 @@ class App extends Component {
 									isAuthProtected={true}
 								/>
 							))}
-					</Switch>
-						</ThemeProvider>
+						</Switch>
+					</ThemeProvider>
 				</Router>
 			</React.Fragment>
 		);
