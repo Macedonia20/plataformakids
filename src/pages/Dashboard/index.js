@@ -116,7 +116,7 @@ const Dashboard = () => {
             <div className="page-content">
                 <Container fluid>
                     <Breadcrumbs title="DESAFIOS" breadcrumbItems={breadcrumbItems} />
-                    {map(desafios, (desafio, key) => (
+                    {desafios.map((desafio, key) => (
                         <span
                             key={key}
                             onClick={
@@ -134,7 +134,7 @@ const Dashboard = () => {
             }
 
         </React.Fragment>
-    );
+    )
 }
 
 export default Dashboard;

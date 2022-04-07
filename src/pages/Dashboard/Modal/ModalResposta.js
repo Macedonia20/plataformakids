@@ -11,6 +11,7 @@ const ModalResposta = ({
 
     const [valueTextArea, setValueTextArea] = React.useState('');
 
+
     function onChangeTextArea(text) {
         setValueTextArea(text)
     }
@@ -32,9 +33,10 @@ const ModalResposta = ({
             }
             await api.put(`/desafios/${desafio.iddesafios_usuarios}`, dataBody, options)
 
+            reloadDadas()
+
             setModalStandard()
 
-            reloadDadas()
         } catch (err) {
             console.error(err)
         }
