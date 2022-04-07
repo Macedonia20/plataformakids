@@ -56,9 +56,6 @@ const Dashboard = () => {
     }
 
     function setModalOpen(desafio, key) {
-        if (key + 1 <= desafios.length) {
-            setNextCode(desafios[key + 1].codigo_secreto)
-        }
 
         setModal_Standart(true)
         setDesafioAberto(desafio)
