@@ -17,13 +17,50 @@ import Breadcrumbs from '../../components/Common/Breadcrumb';
 
 const Dashboard = () => {
 
-
-    const [breadcrumbItems, setBreadcrumbItems] = useState([])
     const [desafios, setDesafios] = useState([])
     const [modal_standard, setModal_Standart] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [desafioAberto, setDesafioAberto] = useState(null)
     const [nextCode, setNextCode] = useState(null)
+
+    //Chando Status Modal Trancado
+    async function changeStatusDesafio(desafio) {
+        let obj = '';
+        if (localStorage.getItem("authUser")) {
+            obj = JSON.parse(localStorage.getItem("authUser"));
+        }
+
+        const options = {
+            headers: { "Authorization": `Bearer ${obj.token}` }
+        }
+        await api.get(`/desafios/validar/${desafio.codigo_secreto}`, options)
+        await carregarDesafios()
+    }
+
+    async function handleValidarResposta(valueTextArea, desafio) {
+
+        try {
+            let obj = '';
+            if (localStorage.getItem("authUser")) {
+                obj = JSON.parse(localStorage.getItem("authUser"));
+            }
+
+            const options = {
+                headers: { "Authorization": `Bearer ${obj.token}` }
+            }
+
+            const dataBody = {
+                respostaDesafio: valueTextArea
+            }
+
+            await api.put(`/desafios/${desafio.iddesafios_usuarios}`, dataBody, options)
+            await carregarDesafios()
+
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     function setModalStandard(bollean) {
         setModal_Standart(bollean)
@@ -53,7 +90,6 @@ const Dashboard = () => {
     }
 
     function setModalOpen(desafio, key) {
-
         setModal_Standart(true)
         setDesafioAberto(desafio)
     }
@@ -75,6 +111,7 @@ const Dashboard = () => {
                         modal_standard={modal_standard}
                         setModalStandard={() => setModalStandard(false)}
                         desafio={desafioAberto}
+                        handleValidarResposta={handleValidarResposta}
                     />)
 
             default:
@@ -83,25 +120,22 @@ const Dashboard = () => {
                         modal_standard={modal_standard}
                         setModalStandard={() => setModalStandard(false)}
                         desafio={desafioAberto}
+                        changeStatusDesafio={changeStatusDesafio}
                     />)
         }
     }
 
     useEffect(() => {
         async function loadData() {
-
             await carregarDesafios()
         }
-
         loadData()
-
     }, [])
 
     return (
         <React.Fragment>
             <div className="page-content">
                 <Container fluid>
-                    <Breadcrumbs title="DESAFIOS" breadcrumbItems={breadcrumbItems} />
                     {desafios.map((desafio, key) => (
                         <span
                             key={key}

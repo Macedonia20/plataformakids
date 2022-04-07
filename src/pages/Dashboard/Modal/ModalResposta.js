@@ -1,12 +1,14 @@
 import React from "react";
 import { Modal, ModalHeader, Row, Label, CardBody, Button, FormText } from "reactstrap"
-import api from "../../../services/api";
+
+import { toast } from 'react-toastify';
+
 
 const ModalResposta = ({
     modal_standard,
     setModalStandard,
     desafio,
-
+    handleValidarResposta
 }) => {
 
     const [valueTextArea, setValueTextArea] = React.useState('');
@@ -16,27 +18,13 @@ const ModalResposta = ({
         setValueTextArea(text)
     }
 
-    async function handleValidarResposta() {
-
-        try {
-            let obj = '';
-            if (localStorage.getItem("authUser")) {
-                obj = JSON.parse(localStorage.getItem("authUser"));
-            }
-
-            const options = {
-                headers: { "Authorization": `Bearer ${obj.token}` }
-            }
-
-            const dataBody = {
-                respostaDesafio: valueTextArea
-            }
-            await api.put(`/desafios/${desafio.iddesafios_usuarios}`, dataBody, options)
-
+    async function handleSendRespost() {
+        if (valueTextArea.length < 1) {
+            toast.error('😕 Digite sua resposta')
+        } else {
+            await handleValidarResposta(valueTextArea, desafio)
             setModalStandard()
-
-        } catch (err) {
-            console.error(err)
+            toast.success('🥳 Uuuuaall, Parabéns, bora para póximo nível')
         }
     }
 
@@ -54,9 +42,7 @@ const ModalResposta = ({
                                 height="200"
                                 src={`https://www.youtube.com/embed/${desafio.url}`}
                                 title="YouTube video player"
-                                // frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            // allowfullscreen
                             />
                         </div>
                         <br />
@@ -74,7 +60,7 @@ const ModalResposta = ({
                             <Button
                                 color="primary"
                                 className="btn btn-primary btn-lg btn-block"
-                                onClick={handleValidarResposta}
+                                onClick={() => handleSendRespost()}
                             >
                                 RESPONDER DESAFIO
                             </Button>

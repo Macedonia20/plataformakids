@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, Row, Label, CardBody, Input, Button } from "reactstrap"
 import { toast } from 'react-toastify';
-import api from "../../../services/api";
-
 
 const ModalTrancado = ({
     modal_standard,
     setModalStandard,
     desafio,
+    changeStatusDesafio
 }) => {
     const [codigo, setCodigo] = useState("")
 
@@ -17,26 +16,8 @@ const ModalTrancado = ({
         }
     }
 
-    async function changeStatusDesafio() {
-        try {
-            let obj = '';
-            if (localStorage.getItem("authUser")) {
-                obj = JSON.parse(localStorage.getItem("authUser"));
-            }
-
-            const options = {
-                headers: { "Authorization": `Bearer ${obj.token}` }
-            }
-            await api.get(`/desafios/validar/${desafio.codigo_secreto}`, options)
-
-
-        } catch (err) {
-
-        }
-    }
 
     function handleCloseModal() {
-
         setModalStandard()
         setCodigo("")
     }
@@ -46,19 +27,14 @@ const ModalTrancado = ({
 
         if (newcode === desafio.codigo_secreto) {
             // primeiro abrir toast de confirmação toast
-            console.log("Código validado com sucesso")
-            toast.success("Código validado com sucesso")
+            toast.success("😉 Código validado com sucesso")
             // modificar o status do desafio para pendente (api)
-            changeStatusDesafio()
+            changeStatusDesafio(desafio)
             //Fechar esse modal e abrir o próximo
             setModalStandard()
-
-            //Recarrear dados
-
-
         } else {
-            console.log("Código Inválido, Tente novamente")
-            toast.error("Código Inválido, Tente novamente")
+            toast.error("❌ Código Inválido, Tente novamente")
+            setCodigo("")
         }
     }
     return (
@@ -82,7 +58,7 @@ const ModalTrancado = ({
 
                         <Input type="text"
                             placeholder="Digite aqui..."
-                            defaultValue={codigo}
+                            value={codigo}
                             onChange={(event) => handleTextArea(event.target.value)}
                         />
                         <br />
