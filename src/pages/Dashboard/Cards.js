@@ -7,31 +7,27 @@ import CardTrancado from './CardTrancado';
 
 const Cards = props => {
   const { desafio } = props;
+
+  function renderCards(desafio) {
+    switch (desafio.status) {
+      case 'finalizado':
+        return (
+          <CardFinalizado desafio={desafio} />
+        );
+      case 'pendente':
+        return (
+          <CardPendente desafio={desafio} />
+        );
+
+      default:
+        return (
+          <CardTrancado desafio={desafio} />
+        );
+    }
+  }
   return (
     <React.Fragment>
-      {desafio.status === 'finalizado' ?
-          (
-              <CardFinalizado desafio={desafio} />
-          ) 
-          : 
-          (<></>)
-      }
-
-      {desafio.status === 'pendente' ?
-          (
-              <CardPendente desafio={desafio} />
-          ) 
-          : 
-          (<></>)
-      }
-
-      {!desafio.status ?
-          (
-              <CardTrancado desafio={desafio} />
-          )
-          : 
-          (<></>)
-      }
+      {renderCards(desafio)}
     </React.Fragment>
   )
 }

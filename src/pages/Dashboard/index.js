@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "reactstrap";
-import { map } from "lodash";
 //Import Tost
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import ModalTrancado from "./Modal/ModalTrancado"
 import ModalResposta from "./Modal/ModalResposta"
@@ -25,13 +24,10 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [desafioAberto, setDesafioAberto] = useState(null)
     const [nextCode, setNextCode] = useState(null)
-    const [modifierModal, setModifier] = useState('')
-
 
     function setModalStandard(bollean) {
         setModal_Standart(bollean)
     }
-
 
     async function carregarDesafios() {
         try {
@@ -72,7 +68,6 @@ const Dashboard = () => {
                         setModalStandard={() => setModalStandard(false)}
                         desafio={desafioAberto}
                         proximoCodigo={nextCode}
-                        reloadDadas={() => setModifier('Finalizado')}
                     />)
             case 'pendente':
                 return (
@@ -80,7 +75,6 @@ const Dashboard = () => {
                         modal_standard={modal_standard}
                         setModalStandard={() => setModalStandard(false)}
                         desafio={desafioAberto}
-                        reloadDadas={() => setModifier('Pendente')}
                     />)
 
             default:

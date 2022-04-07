@@ -6,7 +6,7 @@ const ModalResposta = ({
     modal_standard,
     setModalStandard,
     desafio,
-    reloadDadas
+
 }) => {
 
     const [valueTextArea, setValueTextArea] = React.useState('');
@@ -32,8 +32,6 @@ const ModalResposta = ({
                 respostaDesafio: valueTextArea
             }
             await api.put(`/desafios/${desafio.iddesafios_usuarios}`, dataBody, options)
-
-            reloadDadas()
 
             setModalStandard()
 

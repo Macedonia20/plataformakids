@@ -8,7 +8,6 @@ const ModalTrancado = ({
     modal_standard,
     setModalStandard,
     desafio,
-    reloadDadas
 }) => {
     const [codigo, setCodigo] = useState("")
 
@@ -55,7 +54,7 @@ const ModalTrancado = ({
             setModalStandard()
 
             //Recarrear dados
-            reloadDadas()
+
 
         } else {
             console.log("Código Inválido, Tente novamente")
