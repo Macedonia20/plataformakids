@@ -32,10 +32,10 @@ import { withNamespaces } from "react-i18next";
 import { toggleRightSidebar } from "../../store/actions";
 
 //Import logo Images
-import logosmdark from "../../assets/images/logo-kids.png";
-import logodark from "../../assets/images/logo-kids.png";
-import logosmlight from "../../assets/images/logo-kids.png";
-import logolight from "../../assets/images/logo-kids.png";
+import logosmdark from "../../assets/images/logo-kids-vertical.png";
+import logodark from "../../assets/images/logo-kids-vertical.png";
+import logosmlight from "../../assets/images/logo-kids-vertical.png";
+import logolight from "../../assets/images/logo-kids-vertical.png";
 
 //Import Social Profile Images
 // import github from "../../assets/images/brands/github.png";
@@ -129,7 +129,7 @@ class Header extends Component {
                                 <i className="ri-menu-2-line align-middle"></i>
                             </Button>
 
-{/* 
+                            {/* 
                             <Form className="app-search d-none d-lg-block">
                                 <div className="position-relative">
                                     <Input type="text" className="form-control" placeholder={this.props.t('Search')} />
