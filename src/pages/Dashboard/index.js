@@ -21,7 +21,10 @@ const Dashboard = () => {
     const [modal_standard, setModal_Standart] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [desafioAberto, setDesafioAberto] = useState(null)
-    const [nextCode, setNextCode] = useState(null)
+
+    const [openModalTrancado, setModalTrancado] = useState(false)
+    const [openModalResposta, setModalResposta] = useState(false)
+    const [openModalFinalizado, setModalFinalizado] = useState(false)
 
     //Chando Status Modal Trancado
     async function changeStatusDesafio(desafio) {
@@ -62,10 +65,6 @@ const Dashboard = () => {
         }
     }
 
-    function setModalStandard(bollean) {
-        setModal_Standart(bollean)
-    }
-
     async function carregarDesafios() {
         try {
             let obj = '';
@@ -90,37 +89,53 @@ const Dashboard = () => {
     }
 
     function setModalOpen(desafio, key) {
-        setModal_Standart(true)
         setDesafioAberto(desafio)
+        if (desafio.status === null) {
+            setModalTrancado(true)
+        } else if (desafio.status === 'finalizado') {
+            setModalFinalizado(true)
+        } else if (desafio.status === 'pendente') {
+            setModalResposta(true)
+        }
     }
+    function handleNextModalFinalizado(desafio, nextScreen) {
+        setTimeout(() => {
 
+            if (nextScreen === 'finalizado') {
+                setModalOpen(({ ...desafio, status: 'finalizado' }))
+            } else {
+                return
+            }
+        }, 700);
+    }
 
     function optionModal(statusDesafio) {
         switch (statusDesafio) {
             case 'finalizado':
                 return (
                     <ModalFinalizado
-                        modal_standard={modal_standard}
-                        setModalStandard={() => setModalStandard(false)}
+                        modal_standard={openModalFinalizado}
+                        setModalStandard={setModalFinalizado}
                         desafio={desafioAberto}
-                        proximoCodigo={nextCode}
                     />)
             case 'pendente':
                 return (
                     <ModalResposta
-                        modal_standard={modal_standard}
-                        setModalStandard={() => setModalStandard(false)}
+                        modal_standard={openModalResposta}
+                        setModalStandard={setModalResposta}
                         desafio={desafioAberto}
                         handleValidarResposta={handleValidarResposta}
+                        setToggleModalFinalizado={handleNextModalFinalizado}
                     />)
 
             default:
                 return (
                     <ModalTrancado
-                        modal_standard={modal_standard}
-                        setModalStandard={() => setModalStandard(false)}
+                        modal_standard={openModalTrancado}
+                        setModalStandard={setModalTrancado}
                         desafio={desafioAberto}
                         changeStatusDesafio={changeStatusDesafio}
+                        setToggleModalFinalizado={handleNextModalFinalizado}
                     />)
         }
     }
@@ -140,7 +155,22 @@ const Dashboard = () => {
                         <span
                             key={key}
                             onClick={
-                                () => setModalOpen(desafio, key)
+                                () => {
+                                    let newData = {}
+                                    try {
+                                        const nextCode = (desafios[++key].codigo_secreto)
+                                        if (nextCode) {
+                                            newData = { ...desafio, nextCode }
+                                        } else {
+                                            newData = desafio
+                                        }
+                                    } catch (err) {
+                                        newData = { ...desafio, nextCode: null }
+                                    }
+
+                                    console.log(newData)
+                                    setModalOpen(newData, key)
+                                }
                             }>
                             <Cards desafio={desafio} />
                         </span>

@@ -6,7 +6,8 @@ const ModalTrancado = ({
     modal_standard,
     setModalStandard,
     desafio,
-    changeStatusDesafio
+    changeStatusDesafio,
+    setToggleModalFinalizado
 }) => {
     const [codigo, setCodigo] = useState("")
 
@@ -18,20 +19,23 @@ const ModalTrancado = ({
 
 
     function handleCloseModal() {
-        setModalStandard()
+        setModalStandard(false)
         setCodigo("")
     }
     function handleConferirCodigo() {
 
         const newcode = codigo.toUpperCase()
+        const codeCorrect = desafio.codigo_secreto.toUpperCase()
 
-        if (newcode === desafio.codigo_secreto) {
+        if (newcode === codeCorrect) {
             // primeiro abrir toast de confirmação toast
             toast.success("😉 Código validado com sucesso")
             // modificar o status do desafio para pendente (api)
             changeStatusDesafio(desafio)
             //Fechar esse modal e abrir o próximo
-            setModalStandard()
+            setModalStandard(false)
+            //Abrindo o proximo Modal
+            setToggleModalFinalizado(desafio, 'pendente')
         } else {
             toast.error("❌ Código Inválido, Tente novamente")
             setCodigo("")

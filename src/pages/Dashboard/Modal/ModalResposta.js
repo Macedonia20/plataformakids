@@ -8,7 +8,8 @@ const ModalResposta = ({
     modal_standard,
     setModalStandard,
     desafio,
-    handleValidarResposta
+    handleValidarResposta,
+    setToggleModalFinalizado
 }) => {
 
     const [valueTextArea, setValueTextArea] = React.useState('');
@@ -23,14 +24,20 @@ const ModalResposta = ({
             toast.error('😕 Digite sua resposta')
         } else {
             await handleValidarResposta(valueTextArea, desafio)
-            setModalStandard()
+            setModalStandard(false)
             toast.success('🥳 Uuuuaall, Parabéns, bora para póximo nível')
+            setToggleModalFinalizado(desafio, 'finalizado')
         }
+    }
+
+    function handleCloseModal() {
+        setModalStandard(false)
+
     }
 
     return (
         <Modal isOpen={modal_standard}  >
-            <ModalHeader toggle={() => setModalStandard()} >
+            <ModalHeader toggle={() => handleCloseModal()} >
                 <Row className="mb-3">
                     <Label className="">
                         <h1> {desafio.nome}</h1>

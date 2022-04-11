@@ -5,11 +5,10 @@ const ModalFinalizado = ({
     modal_standard,
     setModalStandard,
     desafio,
-    proximoCodigo
 }) => {
     return (
         <Modal isOpen={modal_standard}  >
-            <ModalHeader toggle={() => setModalStandard()} >
+            <ModalHeader toggle={() => setModalStandard(false)} >
                 <Row className="mb-3">
                     <Label className="">
                         <h1>{desafio.nome} finalizado</h1>
@@ -19,18 +18,18 @@ const ModalFinalizado = ({
                             <iframe
                                 width="100%"
                                 height="200"
-                                src={`https://www.youtube.com/embed/${desafio.url}`}
+                                src={`https://www.youtube.com/embed/${desafio.url_resposta}`}
                                 title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             />
                         </div>
-                        {proximoCodigo === null
+                        {desafio.nextCode === null
                             ? <p>Parabens você concluiu todos desafios</p>
                             :
                             <p>Parabéns pela sua conquita você ganhou <br />
                                 <strong>{desafio.pontos} </strong>
                                 no próximo desafio útileze o código
-                                <b> {proximoCodigo}.</b>
+                                <b> {desafio.nextCode}.</b>
                             </p>
                         }
                         <br />
@@ -38,7 +37,7 @@ const ModalFinalizado = ({
                             <Button
                                 color="primary"
                                 className="btn btn-primary btn-lg btn-block "
-                                onClick={() => setModalStandard()}
+                                onClick={() => setModalStandard(false)}
                             >
                                 FECHAR
                             </Button>
