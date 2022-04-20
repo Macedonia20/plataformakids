@@ -79,10 +79,10 @@ class QGRPesquisar extends Component {
             <Row>
               {this.state.qgrs.length > 0 ? (
                 <>
-                  <p></p>
+                  {/* <p></p>
                   {map(this.state.qgrs, (qgr, key) => (
                     <CardBrasil qgr={qgr} key={"_qgr_" + key} />
-                  ))}
+                  ))} */}
                 </>
               ) : (
                 <></>
