@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.06566407.chunk.css",
-    "main.js": "/static/js/main.49bd8e91.chunk.js",
-    "main.js.map": "/static/js/main.49bd8e91.chunk.js.map",
+    "main.js": "/static/js/main.2a7dce7f.chunk.js",
+    "main.js.map": "/static/js/main.2a7dce7f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.7a1e0eef.js",
     "runtime-main.js.map": "/static/js/runtime-main.7a1e0eef.js.map",
     "static/css/2.0be4d53e.chunk.css": "/static/css/2.0be4d53e.chunk.css",
-    "static/js/2.4f6d6bbd.chunk.js": "/static/js/2.4f6d6bbd.chunk.js",
-    "static/js/2.4f6d6bbd.chunk.js.map": "/static/js/2.4f6d6bbd.chunk.js.map",
+    "static/js/2.e613a29d.chunk.js": "/static/js/2.e613a29d.chunk.js",
+    "static/js/2.e613a29d.chunk.js.map": "/static/js/2.e613a29d.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.0be4d53e.chunk.css.map": "/static/css/2.0be4d53e.chunk.css.map",
     "static/css/main.06566407.chunk.css.map": "/static/css/main.06566407.chunk.css.map",
-    "static/js/2.4f6d6bbd.chunk.js.LICENSE.txt": "/static/js/2.4f6d6bbd.chunk.js.LICENSE.txt",
+    "static/js/2.e613a29d.chunk.js.LICENSE.txt": "/static/js/2.e613a29d.chunk.js.LICENSE.txt",
     "static/media/abuso-sexual.1023939f.jpg": "/static/media/abuso-sexual.1023939f.jpg",
     "static/media/avatar-1.3921191a.jpg": "/static/media/avatar-1.3921191a.jpg",
     "static/media/avatar-2.feb0f89d.jpg": "/static/media/avatar-2.feb0f89d.jpg",
@@ -85,8 +85,8 @@
   "entrypoints": [
     "static/js/runtime-main.7a1e0eef.js",
     "static/css/2.0be4d53e.chunk.css",
-    "static/js/2.4f6d6bbd.chunk.js",
+    "static/js/2.e613a29d.chunk.js",
     "static/css/main.06566407.chunk.css",
-    "static/js/main.49bd8e91.chunk.js"
+    "static/js/main.2a7dce7f.chunk.js"
   ]
 }
